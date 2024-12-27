@@ -1,13 +1,12 @@
-# EdgeLimits .dotfiles
+# .dotfiles (EdgeLimits edition)
 ## 0. Pre-requisites
 
+This guide is intended for the Mac OS. If this is a fresh install, make sure you have set the following:
 - Xcode
-- Homebrew
-
 ```bash
 xcode-select --install
 ```
-
+- Homebrew
 ```bash
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```
@@ -23,30 +22,33 @@ git clone git@github.com:EdgeLimits/.dotfiles.git ~/.dotfiles
 ```bash
 git clone git@github.com:tmux-plugins/tpm.git ~/.tmux/plugins/tpm
 ```
-```
 
-3. Go to .dotfiles directory and update submodules
+3. Go to the .dotfiles directory and update submodules
 ```bash
 cd ~/.dotfiles
 git submodule update --init --recursive
 ```
 
-4. Run the following commands
+4. Change the permission to the files to make them executable
 ```bash
 chmod +x install
 chmod +x macos-packages
 chmod +x macos
-
-./macos-packages # for the first time
 ```
 
-5. Run the following command
+5. (Optional) If this is a fresh install, run this file to install fonts and brew packages
+```bash
+./macos-packages
+```
+
+6. Create symbolic links using stow
 ```bash
 ~/.dotfiles/macos
-
 ```
 
 ## 2. Setup
+
+If this is a fresh install, you'll need to install the TMUX package manager.
 1. Start TMUX
 ```bash
 tmux
