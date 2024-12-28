@@ -54,7 +54,7 @@ If this is a fresh install, you'll need to install the TMUX package manager.
 tmux
 ```
 
-2. Install TMUX plugins
+2. Install TMUX plugins (<leader> + I)
 ```bash
-Ctrl + I
+` + I 
 ```
