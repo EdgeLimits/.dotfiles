@@ -8,4 +8,14 @@ if [[ -z $DOTFILES ]]; then
   DOTFILES=$HOME/.dotfiles
 fi
 
+source $DOTFILES/.env
+
+if [[ "$DOTFILES_ENABLE_PERSONAL" == "True" ]]; then
+  STOW_FOLDERS="$STOW_FOLDERS,personal"
+fi
+
+if [[ "$DOTFILES_ENABLE_WORK" == "True" ]]; then
+  STOW_FOLDERS="$STOW_FOLDERS,work"
+fi
+
 STOW_FOLDERS=$STOW_FOLDERS DOTFILES=$DOTFILES $DOTFILES/install

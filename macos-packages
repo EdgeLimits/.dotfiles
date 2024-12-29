@@ -45,6 +45,15 @@ echo "Neovim installed successfully."
 brew install node
 echo "Node installed succesfully"
 
+# Install Node Version Manager
+brew install nvm
+echo "NVM installed successfully"
+mkdir ~/.nvm
+
+# Install Python version manager
+brew install pyenv
+echo "Pyenv installed successfully"
+
 # Install tmux
 brew install tmux
 echo "TMUX installed successfully"
