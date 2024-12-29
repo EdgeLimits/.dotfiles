@@ -44,3 +44,8 @@ for i in `find -L $PERSONAL`; do
     source $i
 done
 
+WORK=$HOME/.config/work
+for i in `find -L $WORK`; do
+    source $i
+done
+
