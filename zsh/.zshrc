@@ -40,12 +40,16 @@ src(){
 }
 
 PERSONAL=$HOME/.config/personal
-for i in `find -L $PERSONAL`; do
-    source $i
-done
+if [ -d "$PERSONAL" ]; then
+  for i in `find -L $PERSONAL`; do
+      source $i
+  done
+fi
 
 WORK=$HOME/.config/work
-for i in `find -L $WORK`; do
-    source $i
-done
+if [ -d "$WORK" ]; then
+  for i in `find -L $WORK`; do
+      source $i
+  done
+fi
 
