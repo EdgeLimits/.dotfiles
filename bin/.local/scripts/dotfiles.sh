@@ -1,5 +1,10 @@
 #!/bin/bash
 
+UPDATE_FLAG=0
+if [[ " $@ " == *" --update "* ]]; then
+  UPDATE_FLAG=1
+fi
+
 cd ~/.dotfiles
 source .env
 
@@ -39,6 +44,18 @@ if ! tmux has-session -t $SESSION_NAME 2>/dev/null; then
   fi
 
   tmux select-window -t :1
+fi
+
+if [[ "$UPDATE_FLAG" == "1" ]]; then
+  tmux send-keys -t $SESSION_NAME:shell "git pull" C-m
+
+  if [[ "$DOTFILES_ENABLE_PERSONAL" == "True" ]]; then
+    tmux send-keys -t $SESSION_NAME:personal-shell "git pull" C-m
+  fi
+
+  if [[ "$DOTFILES_ENABLE_WORK" == "True" ]]; then
+    tmux send-keys -t $SESSION_NAME:work-shell "git pull" C-m
+  fi
 fi
 
 if [[ -z $TMUX ]]; then
