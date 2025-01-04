@@ -1,5 +1,7 @@
 #!/bin/bash
 
+source .env
+
 SESSION_NAME="dotfiles"
 GITHUB_REPO="git@github.com:EdgeLimits/.dotfiles.git"
 DIRECTORY="$HOME/.dotfiles"
@@ -27,9 +29,6 @@ if [[ "$DOTFILES_ENABLE_WORK" == "True" ]] && [ ! -d "$WORK_DIRECTORY" ]; then
   git clone $WORK_GITHUB_REPO "$WORK_DIRECTORY"
 fi
 
-cd $DIRECTORY
-source .env
-
 if ! pgrep -x "tmux" >/dev/null; then
   echo "Starting tmux server"
   tmux start-server
@@ -39,6 +38,7 @@ if ! tmux has-session -t $SESSION_NAME 2>/dev/null; then
   echo "Creating new session: $SESSION_NAME"
 
   tmux new-session -d -s $SESSION_NAME -n source
+  tmux send-keys -t $SESSION_NAME "cd $DIRECTORY" C-m
   tmux send-keys -t $SESSION_NAME "nvim ." C-m
 
   tmux new-window -t $SESSION_NAME -n shell
@@ -67,7 +67,7 @@ if ! tmux has-session -t $SESSION_NAME 2>/dev/null; then
 fi
 
 if [[ "$UPDATE_FLAG" == "1" ]]; then
-  tmux send-keys -t $SESSION_NAME:shell "git pull && git submodule update --remote" C-m
+  tmux send-keys -t $SESSION_NAME:shell "git pull && git submodule update --remote --merge" C-m
 
   if [[ "$DOTFILES_ENABLE_PERSONAL" == "True" ]]; then
     tmux send-keys -t $SESSION_NAME:personal-shell "git pull" C-m
@@ -80,8 +80,9 @@ fi
 
 if [[ -z $TMUX ]]; then
   tmux attach-session -t $SESSION_NAME
+  tmux select-window -t :1
 else
   tmux switch-client -t $SESSION_NAME
 fi
 
-tmux select-window -t :1
+exit 0
