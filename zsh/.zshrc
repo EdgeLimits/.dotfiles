@@ -16,6 +16,9 @@ source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 export NVM_DIR="$HOME/.nvm"
 
+
+alias dotfiles="sh $HOME/.local/scripts/dotfiles.sh"
+
 env-pyenv(){
   # make sure pyenv is installed (brew install pyenv)
   export PATH="$HOME/.pyenv/bin:$PATH"
