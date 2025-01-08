@@ -51,7 +51,7 @@ echo "NVM installed successfully"
 mkdir ~/.nvm
 
 # Install Python version manager
-brew install pyenv
+brew install pyenv pyenv-virtualenv
 echo "Pyenv installed successfully"
 
 # Install tmux
