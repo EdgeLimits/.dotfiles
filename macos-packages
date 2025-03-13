@@ -66,6 +66,10 @@ echo "Ripgrep installed successfully"
 brew install lazygit
 echo "Lazygit installed successfully"
 
+# Install Ghostty
+brew install --cask ghostty
+echo "Ghostty installed successfully"
+
 # Install WezTerm
 brew install --cask wezterm
 echo "Wezterm installed successfully"
