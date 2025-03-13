@@ -17,6 +17,13 @@ if [[ " $@ " == *" --update "* ]]; then
   UPDATE_FLAG=1
 fi
 
+if [[ "$(pwd)" != "$DIRECTORY" ]]; then
+  cd "$DIRECTORY" || {
+    echo "Failed to change directory to $DIRECTORY"
+    exit 1
+  }
+fi
+
 if [ ! -d "$DIRECTORY" ]; then
   git clone $GITHUB_REPO "$DIRECTORY"
 fi
