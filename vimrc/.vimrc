@@ -37,8 +37,8 @@ set breakindent
 set ignorecase
 set smartcase
 
-" Always show status line
-set laststatus=2
+" views can only be fully collapsed with the global statusline
+set laststatus=3
 
 " Enable mouse mode
 set mouse=a
