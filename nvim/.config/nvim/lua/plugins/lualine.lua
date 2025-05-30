@@ -25,7 +25,7 @@ return {
 				theme = custom_catppuccin,
 				component_separators = "|",
 				section_separators = { left = "", right = "" },
-				disabled_filetypes = { "NvimTree", "aerial" },
+				disabled_filetypes = { "NvimTree", "aerial", "Avante", "AvanteInput" },
 			},
 			sections = {
 				lualine_a = { "mode" },

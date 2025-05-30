@@ -32,7 +32,7 @@ return {
 		},
 		-- Set up format-on-save
 		format_on_save = {
-			timeout_ms = 500,
+			timeout_ms = 2000,
 			lsp_fallback = true,
 			stop_after_first = true, -- Apply globally instead of inside formatters_by_ft
 		},
