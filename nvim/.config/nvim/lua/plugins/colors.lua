@@ -6,9 +6,7 @@ return {
 	lazy = false,
 	config = function()
 		local catppuccin = require("catppuccin")
-
 		local colors = require("catppuccin.palettes").get_palette()
-
 		local telescope_bg = colors.mantle
 		local telescope_fg = telescope_bg
 
