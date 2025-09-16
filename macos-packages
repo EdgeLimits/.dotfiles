@@ -81,3 +81,7 @@ echo "Starship installed successfully"
 # Install zsh-highlight & zsh-autosuggestions
 brew install zsh-syntax-highlighting zsh-autosuggestions
 echo "Syntax Highlighting & Autosuggestions installed successfully"
+
+# Install OpenCode
+brew install sst/tap/opencode
+echo "OpenCode installed successfully."
