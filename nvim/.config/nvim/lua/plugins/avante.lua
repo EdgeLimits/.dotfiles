@@ -13,7 +13,7 @@ return {
 		-- this file can contain specific instructions for your project
 		instructions_file = "avante.md",
 		-- for example
-		provider = "claude",
+		provider = "openai",
 		providers = {
 			claude = {
 				endpoint = "https://api.anthropic.com",
@@ -31,6 +31,15 @@ return {
 				extra_request_body = {
 					temperature = 0.75,
 					max_tokens = 32768,
+				},
+			},
+			openai = {
+				endpoint = "https://api.openai.com/v1",
+				model = "gpt-4.1", -- or "gpt-4.1-mini" / "gpt-4o"
+				timeout = 30000,
+				extra_request_body = {
+					temperature = 0.7,
+					max_tokens = 16000,
 				},
 			},
 		},
