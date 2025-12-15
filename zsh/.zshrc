@@ -16,7 +16,10 @@ eval "$(starship init zsh)"
 export NVM_DIR="$HOME/.nvm"
 
 
-alias dotfiles="sh $HOME/.local/scripts/dotfiles.sh"
+alias dotfiles="cd $HOME/.dotfiles && nvim ."
+ssh-init(){
+  eval "$(ssh-agent -s)"
+}
 
 env-pyenv(){
   # make sure pyenv is installed (brew install pyenv)
