@@ -1,1 +1,0 @@
-/home/edge/.config/omarchy/current/theme/neovim.lua
