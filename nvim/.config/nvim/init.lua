@@ -6,13 +6,11 @@ vim.g.maplocalleader = " "
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
--- [[ Install `lazy.nvim` plugin manager ]]
---    See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
         local lazyrepo = "https://github.com/folke/lazy.nvim.git"
         vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
-end ---@diagnostic disable-next-line: undefined-field
+end
 vim.opt.rtp:prepend(lazypath)
 
 -- Disable some in-built features which are unnecessary (and probably affects performance?)
@@ -50,7 +48,6 @@ local modules = {
 
 require("lazy").setup(config, opts)
 
--- Safely load the necessary user-defined Lua modules meant to customise Neovim.
 for _, module in ipairs(modules) do
         local ok, error = pcall(require, module)
         if not ok then
