@@ -9,20 +9,20 @@
 -- 	end,
 -- }
 -- return {
--- 	"ellisonleao/gruvbox.nvim",
--- 	lazy = false,
--- 	priority = 1000,
--- 	opts = {},
--- 	config = function()
--- 		vim.cmd.colorscheme("gruvbox")
--- 	end,
+--   "ellisonleao/gruvbox.nvim",
+--   lazy = false,
+--   priority = 1000,
+--   opts = {},
+--   config = function()
+--     vim.cmd.colorscheme("gruvbox")
+--   end,
 -- }
 return {
-	"folke/tokyonight.nvim",
-	lazy = false,
-	priority = 1000,
-	opts = {},
-	config = function()
-		vim.cmd.colorscheme("tokyonight-night")
-	end,
+  "folke/tokyonight.nvim",
+  lazy = false,
+  priority = 1000,
+  opts = {},
+  config = function()
+    vim.cmd.colorscheme("tokyonight-night")
+  end,
 }
