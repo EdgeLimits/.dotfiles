@@ -22,12 +22,14 @@ ssh-init(){
   eval "$(ssh-agent -s)"
 }
 
-if ! pgrep -u "$USER" ssh-agent > /dev/null; then
-    ssh-agent -t 1h > "$XDG_RUNTIME_DIR/ssh-agent.env"
-fi
-if [ ! -f "$SSH_AUTH_SOCK" ]; then
-    source "$XDG_RUNTIME_DIR/ssh-agent.env" >/dev/null
-fi
+function check_ssh {
+  [[ $3 =~ '\bssh\b' ]] || return
+  [[ -n "$SSH_AGENT_PID" && -e "/proc/$SSH_AGENT_PID" ]] \
+    && ssh-add -l >/dev/null && return
+  eval `keychain --eval id_dsa --timeout 60`
+}    
+autoload -U add-zsh-hook
+add-zsh-hook preexec check_ssh
 
 env-pyenv(){
   # make sure pyenv is installed (brew install pyenv)
