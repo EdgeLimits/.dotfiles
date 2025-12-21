@@ -8,8 +8,8 @@ vim.g.loaded_netrwPlugin = 1
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
-        local lazyrepo = "https://github.com/folke/lazy.nvim.git"
-        vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
+  local lazyrepo = "https://github.com/folke/lazy.nvim.git"
+  vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
 end
 vim.opt.rtp:prepend(lazypath)
 
@@ -24,21 +24,21 @@ vim.loader.enable()
 vim.o.termguicolors = true
 
 local config = {
-        { import = "plugins" },
+  { import = "plugins" },
 }
 
 local opts = {
-        checker = {
-                enable = true,
-                notify = false,
-        },
-        change_detection = {
-                notify = false,
-        },
+  checker = {
+    enable = true,
+    notify = false,
+  },
+  change_detection = {
+    notify = false,
+  },
 }
 
 local modules = {
-        "options",
+  "options",
 }
 
 -- vim.cmd.colorscheme("tokyonight-night")
@@ -49,8 +49,8 @@ local modules = {
 require("lazy").setup(config, opts)
 
 for _, module in ipairs(modules) do
-        local ok, error = pcall(require, module)
-        if not ok then
-                print("Error loading module: " .. error)
-        end
+  local ok, error = pcall(require, module)
+  if not ok then
+    print("Error loading module: " .. error)
+  end
 end
