@@ -17,9 +17,17 @@ export NVM_DIR="$HOME/.nvm"
 
 
 alias dotfiles="cd $HOME/.dotfiles && nvim ."
+
 ssh-init(){
   eval "$(ssh-agent -s)"
 }
+
+if ! pgrep -u "$USER" ssh-agent > /dev/null; then
+    ssh-agent -t 1h > "$XDG_RUNTIME_DIR/ssh-agent.env"
+fi
+if [ ! -f "$SSH_AUTH_SOCK" ]; then
+    source "$XDG_RUNTIME_DIR/ssh-agent.env" >/dev/null
+fi
 
 env-pyenv(){
   # make sure pyenv is installed (brew install pyenv)
