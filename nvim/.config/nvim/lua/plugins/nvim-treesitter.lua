@@ -3,24 +3,31 @@ return {
   lazy = false,
   build = ":TSUpdate",
   config = function()
-    require("nvim-treesitter").setup({
-      ensure_installed = {
-        "astro",
-        "css",
-        "dockerfile",
-        "javascript",
-        "json",
-        "lua",
-        "markdown",
-        "markdown_inline",
-        "python",
-        "scss",
-        "typescript",
-      },
-      -- Autoinstall languages that are not installed
-      auto_install = true,
-      highlight = { enable = true },
-      indent = { enable = true },
+    local ts = require("nvim-treesitter")
+    local parsers = {
+      "bash",
+      "astro",
+      "css",
+      "dockerfile",
+      "javascript",
+      "json",
+      "lua",
+      "markdown",
+      "markdown_inline",
+      "python",
+      "scss",
+      "typescript",
+    }
+
+    for _, parser in ipairs(parsers) do
+      ts.install(parser)
+    end
+
+    vim.api.nvim_create_autocmd("FileType", {
+      pattern = parsers,
+      callback = function()
+        vim.treesitter.start()
+      end,
     })
   end,
 }
