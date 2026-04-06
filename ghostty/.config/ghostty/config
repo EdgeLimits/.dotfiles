@@ -47,3 +47,6 @@ mouse-scroll-multiplier = 0.95
 # window-padding-y = 16
 # window-vsync = true
 # # window-decoration = none
+
+# Fix general slowness on hyprland (https://github.com/ghostty-org/ghostty/discussions/3224)
+async-backend = epoll

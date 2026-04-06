@@ -22,14 +22,6 @@ ssh-init(){
   eval "$(ssh-agent -s)"
 }
 
-function check_ssh {
-  [[ $3 =~ '\bssh\b' ]] || return
-  [[ -n "$SSH_AGENT_PID" && -e "/proc/$SSH_AGENT_PID" ]] \
-    && ssh-add -l >/dev/null && return
-  eval `keychain --eval id_dsa --timeout 60`
-}    
-autoload -U add-zsh-hook
-add-zsh-hook preexec check_ssh
 
 env-pyenv(){
   # make sure pyenv is installed (brew install pyenv)
@@ -55,3 +47,6 @@ src(){
   fi
 }
 
+export PATH="$HOME/.local/bin:$PATH"
+
+. "$HOME/.local/share/../bin/env"
