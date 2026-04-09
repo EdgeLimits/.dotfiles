@@ -12,7 +12,7 @@ eval "$(starship init bash)"
 export NVM_DIR="$HOME/.nvm"
 
 alias dotfiles="cd $HOME/.dotfiles && nvim ."
-alias healper="cd ~/Development/healper_dev"
+alias healper="cd ~/Development/healper/healper_dev"
 alias dev="cd ~/Development"
 
 ssh-init() {
@@ -43,3 +43,7 @@ src() {
 
 export PATH="$HOME/.local/bin:$PATH"
 [ -f "$HOME/.local/bin/env" ] && . "$HOME/.local/bin/env"
+
+# Brave profiles
+alias brave-edgelimits='brave --profile-directory=EdgeLimits'
+alias brave-healper='brave --profile-directory=Healper'
