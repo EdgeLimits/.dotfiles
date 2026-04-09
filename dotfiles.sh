@@ -5,9 +5,8 @@ if ! command -v stow &>/dev/null; then
   exit 1
 fi
 
-
 rm -rf ~/.config/starship.toml
-rm -rf ~/.config/alacritty
+# rm -rf ~/.config/alacritty
 rm -rf ~/.config/ghostty
 rm -rf ~/.config/nvim
 rm -rf ~/.local/share/nvim
@@ -16,7 +15,7 @@ rm -rf ~/.cache/nvim
 stow zsh
 stow starship
 stow vimrc
-stow alacritty
+# stow alacritty
 stow ghostty
 stow nvim
 
