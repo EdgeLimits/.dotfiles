@@ -4,4 +4,4 @@
 . ./install/stow.sh
 . ./install/hyprland-overrides.sh
 
-. ./set-shell.sh
+# . ./set-shell.sh

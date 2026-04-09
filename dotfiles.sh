@@ -5,6 +5,7 @@ if ! command -v stow &>/dev/null; then
   exit 1
 fi
 
+rm -f ~/.bashrc
 rm -rf ~/.config/starship.toml
 # rm -rf ~/.config/alacritty
 rm -rf ~/.config/ghostty
@@ -13,10 +14,9 @@ rm -rf ~/.local/share/nvim
 rm -rf ~/.cache/nvim
 
 stow zsh
+stow bash
 stow starship
 stow vimrc
 # stow alacritty
 stow ghostty
 stow nvim
-
-echo "Linking Omarchy theme with Nvim"
