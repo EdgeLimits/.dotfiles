@@ -12,6 +12,8 @@ eval "$(starship init bash)"
 export NVM_DIR="$HOME/.nvm"
 
 alias dotfiles="cd $HOME/.dotfiles && nvim ."
+alias healper="cd ~/Development/healper_dev"
+alias dev="cd ~/Development"
 
 ssh-init() {
   eval "$(ssh-agent -s)"
