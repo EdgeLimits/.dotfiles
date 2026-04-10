@@ -143,6 +143,7 @@ return { -- LSP Configuration & Pluginslsp
       --   },
       -- },
       ts_ls = {},
+      svelte = {},
       lua_ls = {
         settings = {
           Lua = {
@@ -184,6 +185,7 @@ return { -- LSP Configuration & Pluginslsp
       "css-lsp",
       "bash-language-server",
       "shfmt",
+      "svelte-language-server",
     })
     require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 

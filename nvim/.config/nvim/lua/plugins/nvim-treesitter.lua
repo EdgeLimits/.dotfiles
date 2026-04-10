@@ -17,6 +17,7 @@ return {
       "python",
       "scss",
       "typescript",
+      "svelte",
     }
 
     for _, parser in ipairs(parsers) do
