@@ -9,19 +9,28 @@ return {
   config = function()
     local lualine = require("lualine")
 
+    -- Read the current theme's background from the Normal highlight group.
+    -- This works universally across all colorschemes.
+    local function normal_bg()
+      local hl = vim.api.nvim_get_hl(0, { name = "Normal", link = false })
+      return hl.bg and string.format("#%06x", hl.bg) or "NONE"
+    end
+
     -- Try to load the lualine theme matching the active colorscheme,
-    -- then make b/c and inactive sections transparent. Falls back to "auto".
+    -- then set b/c and inactive sections to the theme's background. Falls back to "auto".
     local function build_theme()
       local ok, t = pcall(require, "lualine.themes." .. (vim.g.colors_name or ""))
       if not ok then
         return "auto"
       end
 
+      local bg = normal_bg()
+
       for _, mode in ipairs({ "normal", "insert", "visual", "replace", "command", "inactive" }) do
         if t[mode] then
           for _, section in ipairs({ "a", "b", "c" }) do
             if t[mode][section] and (mode == "inactive" or section ~= "a") then
-              t[mode][section].bg = "NONE"
+              t[mode][section].bg = bg
             end
           end
         end
