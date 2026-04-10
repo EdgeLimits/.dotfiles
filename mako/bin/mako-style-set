@@ -1,0 +1,60 @@
+#!/bin/bash
+
+set -e
+
+STYLES_DIR="$(cd "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")/../styles" && pwd)"
+CURRENT_LINK="$STYLES_DIR/current.ini"
+
+list_styles() {
+  ls "$STYLES_DIR"/*.ini 2>/dev/null | grep -v current.ini | xargs -I{} basename {} .ini
+}
+
+current_style() {
+  if [ -L "$CURRENT_LINK" ]; then
+    basename "$(readlink "$CURRENT_LINK")" .ini
+  else
+    echo "(none)"
+  fi
+}
+
+usage() {
+  echo "Usage: mako-style-set <style>"
+  echo "       mako-style-set --list"
+  echo "       mako-style-set --current"
+  echo ""
+  echo "Available styles:"
+  list_styles | sed 's/^/  /'
+}
+
+case "${1:-}" in
+  --list|-l)
+    list_styles
+    exit 0
+    ;;
+  --current|-c)
+    current_style
+    exit 0
+    ;;
+  --help|-h|"")
+    usage
+    exit 0
+    ;;
+esac
+
+STYLE="$1"
+STYLE_FILE="$STYLES_DIR/$STYLE.ini"
+
+if [ ! -f "$STYLE_FILE" ]; then
+  echo "Error: style '$STYLE' not found."
+  echo ""
+  usage
+  exit 1
+fi
+
+ln -sf "$STYLE_FILE" "$CURRENT_LINK"
+echo "Mako style set to: $STYLE"
+
+pkill mako 2>/dev/null || true
+sleep 0.2
+mako &
+disown
