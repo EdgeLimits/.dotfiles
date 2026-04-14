@@ -9,6 +9,12 @@ vim.o.showbreak = '↳ '
 
 vim.opt.swapfile = false
 
+vim.filetype.add({
+  pattern = {
+    ["%.env%.[%a%d_%-]+"] = "sh",
+  },
+})
+
 -- Disable number column in visual mode
 vim.api.nvim_exec([[
   augroup my_visuallistchars
