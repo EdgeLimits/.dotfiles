@@ -12,8 +12,23 @@ eval "$(starship init bash)"
 export NVM_DIR="$HOME/.nvm"
 
 alias dotfiles="cd $HOME/.dotfiles && nvim ."
-alias healper="cd ~/Development/healper/healper_dev"
+healper() {
+  case "$1" in
+    server) cd ~/Development/healper/healper_server ;;
+    dev)    cd ~/Development/healper/healper_dev ;;
+    agent)  cd ~/Development/healper/healper_agent ;;
+    *)      cd ~/Development/healper ;;
+  esac
+}
 alias dev="cd ~/Development"
+
+shrine() {
+  case "$1" in
+    api) cd ~/Development/shrine/shrine-api ;;
+    app) cd ~/Development/shrine/shrine-app ;;
+    *)   cd ~/Development/shrine ;;
+  esac
+}
 
 ssh-init() {
   eval "$(ssh-agent -s)"
