@@ -51,15 +51,15 @@ return {
         row = 0,
         col = 1
       },
-      -- on_attach = function(bufnr)
-      --   local function map(mode, l, r, opts)
-      --     opts = opts or {}
-      --     opts.buffer = bufnr
-      --     vim.keymap.set(mode, l, r, opts)
-      --   end
-      --   map('n', '<leader>lb', function() gitsigns.blame_line{full=true} end)
-      --   map('n', '<leader>lt', gitsigns.toggle_current_line_blame)
-      -- end,
+      on_attach = function(bufnr)
+        local function map(mode, l, r, opts)
+          opts = opts or {}
+          opts.buffer = bufnr
+          vim.keymap.set(mode, l, r, opts)
+        end
+        map('n', '<leader>gb', function() gitsigns.blame_line { full = true } end, { desc = "Git blame full" })
+        map('n', '<leader>gB', gitsigns.toggle_current_line_blame, { desc = "Git blame toggle" })
+      end,
     }
   end,
 }
