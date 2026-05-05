@@ -195,6 +195,8 @@ return { -- LSP Configuration & Pluginslsp
       "pyright",
       "pylint",
       "black",
+      "prettierd",
+      "prettier",
       "json-lsp",
       "css-lsp",
       "bash-language-server",

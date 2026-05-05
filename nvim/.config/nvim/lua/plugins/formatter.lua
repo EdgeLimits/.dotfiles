@@ -16,25 +16,25 @@ return {
     -- Define your formatters
     formatters_by_ft = {
       lua = { "stylua" },
-      javascript = { "prettierd", "prettier" },
-      typescript = { "prettierd", "prettier" },
-      javascriptreact = { "prettierd", "prettier" },
-      typescriptreact = { "prettierd", "prettier" },
-      json = { "prettierd", "prettier" },
+      javascript = { "prettierd", "prettier", stop_after_first = true },
+      typescript = { "prettierd", "prettier", stop_after_first = true },
+      javascriptreact = { "prettierd", "prettier", stop_after_first = true },
+      typescriptreact = { "prettierd", "prettier", stop_after_first = true },
+      json = { "prettierd", "prettier", stop_after_first = true },
       html = { "htmlbeautifier" },
       python = { "black" },
-      css = { "prettierd", "prettier" },
-      scss = { "prettierd", "prettier" },
+      css = { "prettierd", "prettier", stop_after_first = true },
+      scss = { "prettierd", "prettier", stop_after_first = true },
+      svelte = { "prettierd", "prettier", stop_after_first = true },
+      astro = { "prettierd", "prettier", stop_after_first = true },
     },
     -- Set default options
     default_format_opts = {
-      lsp_format = "fallback",
+      lsp_format = "never",
     },
     -- Set up format-on-save
     format_on_save = {
-      timeout_ms = 2000,
-      lsp_fallback = true,
-      stop_after_first = true, -- Apply globally instead of inside formatters_by_ft
+      timeout_ms = 5000,
     },
   },
 }
