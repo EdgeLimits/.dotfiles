@@ -17,6 +17,7 @@ healper() {
     server) cd ~/Development/healper/healper_server ;;
     dev)    cd ~/Development/healper/healper_dev ;;
     agent)  cd ~/Development/healper/healper_agent ;;
+    ai)     cd ~/Development/healper/healper-ai-support ;;
     *)      cd ~/Development/healper ;;
   esac
 }
@@ -51,9 +52,9 @@ src() {
   if [[ -d "venv/bin" ]]; then
     source venv/bin/activate
   fi
-  if [[ -f ".env" ]]; then
-    source .env
-  fi
+  # if [[ -f ".env" ]]; then
+  #   source .env
+  # fi
 }
 
 export PATH="$HOME/.local/bin:$PATH"
