@@ -24,3 +24,4 @@ stow ghostty
 stow nvim
 stow waybar
 stow hypr
+stow mako
