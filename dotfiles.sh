@@ -12,6 +12,8 @@ rm -rf ~/.config/ghostty
 rm -rf ~/.config/nvim
 rm -rf ~/.local/share/nvim
 rm -rf ~/.cache/nvim
+rm -rf ~/.config/waybar
+rm -f ~/.config/hypr/bindings.conf
 
 stow zsh
 stow bash
@@ -20,3 +22,5 @@ stow vimrc
 # stow alacritty
 stow ghostty
 stow nvim
+stow waybar
+stow hypr

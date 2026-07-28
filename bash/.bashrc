@@ -63,3 +63,12 @@ export PATH="$HOME/.local/bin:$PATH"
 # Brave profiles
 alias brave-edgelimits='brave --profile-directory=EdgeLimits'
 alias brave-healper='brave --profile-directory=Healper'
+
+obs() { xdg-open "obsidian://open?path=$(realpath "$1")"; }
+
+
+# AsyncAPI CLI Autocomplete
+
+ASYNCAPI_AC_BASH_SETUP_PATH=/home/edgelimits/.cache/@asyncapi/cli/autocomplete/bash_setup && test -f $ASYNCAPI_AC_BASH_SETUP_PATH && source $ASYNCAPI_AC_BASH_SETUP_PATH; # asyncapi autocomplete setup
+
+
