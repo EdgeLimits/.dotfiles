@@ -4,16 +4,31 @@ Switching omarchy themes automatically updates the Neovim colorscheme in all run
 
 ## How it works
 
-1. `omarchy-theme-set "Theme Name"` runs the hook at `~/.config/omarchy/hooks/theme-set`
-2. The hook reads the omarchy theme's `neovim.lua` and writes a converted spec to `nvim/.config/nvim/lua/plugins/theme.lua`
+1. `omarchy-theme-set "Theme Name"` runs the hook at `~/.config/omarchy/hooks/theme-set`, passing it the
+   kebab-cased theme slug (e.g. `tokyo-night`)
+2. The hook looks the slug up in its own plugin/colorscheme table and writes a converted spec to
+   `nvim/.config/nvim/lua/plugins/theme.lua`
 3. Lazy.nvim detects the file change (`change_detection` is enabled) and fires `User LazyReload`
 4. `omarchy-theme-hotreload.lua` catches the event, unloads the old theme modules, and applies the new colorscheme
+
+Omarchy's own per-theme `neovim.lua` files (under `~/.local/share/omarchy/themes/<name>/neovim.lua`) are
+intentionally **not** parsed at runtime — their format is inconsistent between themes (some point at a
+different plugin than what we have installed, e.g. Nord's official file uses `nightfox.nvim` while we run
+`nord.nvim`; some `colorscheme` values are LazyVim-only aliases like Catppuccin's `catppuccin-nvim`, not a
+real `:colorscheme` name). The hook's table is matched against the plugins actually loaded in
+`omarchy-theme-list.lua` instead.
+
+Only themes with an installed colorscheme plugin are mapped: Aether, Catppuccin, Catppuccin Latte, Ethereal,
+Everforest, Flexoki Light, Gruvbox, Hackerman, Kanagawa, Matte Black, Nord, Ristretto, Rose Pine, Tokyo Night.
+For any other Omarchy theme (Lumon, Miasma, Osaka Jade, Retro 82, Vantablack, White), the hook leaves
+`theme.lua` untouched and sends a notification instead of guessing. Add a plugin to
+`omarchy-theme-list.lua` and an entry to the hook's tables to extend coverage.
 
 ## Files
 
 | File | Purpose |
 |------|---------|
-| `~/.config/omarchy/hooks/theme-set` | Hook that rewrites `theme.lua` on every theme switch |
+| `nvim/.config/omarchy/hooks/theme-set` | Hook that rewrites `theme.lua` on every theme switch |
 | `nvim/.config/nvim/lua/plugins/theme.lua` | Active colorscheme plugin spec — rewritten by the hook |
 | `nvim/.config/nvim/lua/plugins/omarchy-theme-hotreload.lua` | Listens for `LazyReload` and applies the colorscheme |
 

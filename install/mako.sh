@@ -10,9 +10,10 @@ MAKO_SCRIPT="$DOTFILES_DIR/mako/bin/mako-style-set"
 ln -sf "$MAKO_SCRIPT" "$HOME/.local/bin/mako-style-set"
 echo "mako-style-set linked to ~/.local/bin"
 
-# Set default style if no current.ini symlink exists
-if [ ! -L "$STYLES_DIR/current.ini" ]; then
-    ln -sf "$STYLES_DIR/rounded.ini" "$STYLES_DIR/current.ini"
+# Set default style if current.ini symlink is missing or broken
+# (e.g. a stale absolute-path target committed from another machine/user)
+if [ ! -L "$STYLES_DIR/current.ini" ] || [ ! -e "$STYLES_DIR/current.ini" ]; then
+    ln -sf "rounded.ini" "$STYLES_DIR/current.ini"
     echo "Mako style set to: rounded"
 fi
 

@@ -15,7 +15,8 @@ alias dotfiles="cd $HOME/.dotfiles && nvim ."
 healper() {
   case "$1" in
     server) cd ~/Development/healper/healper_server ;;
-    dev)    cd ~/Development/healper/healper_dev ;;
+    main)   cd ~/Development/healper/healper_server ;;
+    docker) cd ~/Development/healper/healper-docker ;;
     agent)  cd ~/Development/healper/healper_agent ;;
     ai)     cd ~/Development/healper/healper-ai-support ;;
     *)      cd ~/Development/healper ;;

@@ -51,7 +51,7 @@ if [ ! -f "$STYLE_FILE" ]; then
   exit 1
 fi
 
-ln -sf "$STYLE_FILE" "$CURRENT_LINK"
+ln -sf "$(basename "$STYLE_FILE")" "$CURRENT_LINK"
 echo "Mako style set to: $STYLE"
 
 pkill mako 2>/dev/null || true
