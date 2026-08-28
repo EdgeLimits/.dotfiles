@@ -7,21 +7,22 @@ fi
 
 rm -f ~/.bashrc
 rm -rf ~/.config/starship.toml
-# rm -rf ~/.config/alacritty
 rm -rf ~/.config/ghostty
+rm -f ~/.config/xdg-terminals.list
 rm -rf ~/.config/nvim
 rm -rf ~/.local/share/nvim
 rm -rf ~/.cache/nvim
-rm -rf ~/.config/waybar
-rm -f ~/.config/hypr/bindings.conf
+
+# Omarchy 4 ships these as real files in ~/.config/hypr; they are the designated
+# user-override files, so we replace them with our own. `omarchy refresh
+# hyprland` will put Omarchy's versions back -- writing through the symlinks
+# into this repo, where git can recover them.
+rm -f ~/.config/hypr/{monitors,input,looknfeel,bindings,autostart}.lua
 
 stow zsh
 stow bash
 stow starship
 stow vimrc
-# stow alacritty
 stow ghostty
 stow nvim
-stow waybar
 stow hypr
-stow mako

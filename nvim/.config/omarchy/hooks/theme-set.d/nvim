@@ -1,0 +1,18 @@
+#!/bin/bash
+# Nudge running Neovim instances to pick up the new Omarchy theme.
+#
+# Omarchy has already regenerated
+# ~/.local/state/omarchy/current/theme/neovim.lua by the time this runs.
+# lua/plugins/theme.lua reads that file, so it does not need rewriting -- it
+# only needs its mtime bumped so lazy.nvim's change_detection fires User
+# LazyReload, which lua/plugins/omarchy-theme-hotreload.lua acts on.
+#
+# This replaced a hook that hand-maintained three slug -> plugin -> colorscheme
+# tables and rewrote theme.lua on every switch (which also left the dotfiles
+# repo dirty). Omarchy 4 generates that mapping itself.
+
+THEME_SPEC="$(readlink -f "$HOME/.config/nvim/lua/plugins/theme.lua" 2>/dev/null)"
+
+[ -n "$THEME_SPEC" ] && [ -f "$THEME_SPEC" ] && touch "$THEME_SPEC"
+
+exit 0

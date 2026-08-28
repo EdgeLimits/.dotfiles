@@ -1,3 +1,11 @@
+-- Applies the new colorscheme in every running Neovim when the Omarchy theme
+-- changes, without a restart.
+--
+-- Chain: `omarchy theme set X` regenerates
+-- ~/.local/state/omarchy/current/theme/neovim.lua, then runs the
+-- theme-set.d/nvim hook, which touches lua/plugins/theme.lua. lazy.nvim's
+-- change_detection notices and fires User LazyReload, which lands here.
+
 return {
 	{
 		name = "theme-hotreload",
@@ -10,22 +18,20 @@ return {
 			vim.api.nvim_create_autocmd("User", {
 				pattern = "LazyReload",
 				callback = function()
-					-- Unload the theme module
+					-- Drop both caches so the generated spec is re-read from disk.
 					package.loaded["plugins.theme"] = nil
+					package.loaded["omarchy_theme"] = nil
 
 					vim.schedule(function()
-						local ok, theme_spec = pcall(require, "plugins.theme")
+						local ok, omarchy = pcall(require, "omarchy_theme")
 						if not ok then
 							return
 						end
 
-						-- theme_spec is a single plugin spec with a custom `colorscheme` field
-						local colorscheme = theme_spec.colorscheme
+						local _, colorscheme, theme_plugin_name = omarchy.read()
 						if not colorscheme then
 							return
 						end
-
-						local theme_plugin_name = theme_spec.name or theme_spec[1]
 
 						-- Clear all highlight groups before applying new theme
 						vim.cmd("highlight clear")
@@ -36,20 +42,26 @@ return {
 						-- Reset background so colorscheme can set it properly
 						vim.o.background = "dark"
 
+						local plugin = theme_plugin_name and require("lazy.core.config").plugins[theme_plugin_name]
+
 						-- Unload theme plugin modules to force full reload
-						if theme_plugin_name then
-							local plugin = require("lazy.core.config").plugins[theme_plugin_name]
-							if plugin then
-								local plugin_dir = plugin.dir .. "/lua"
-								require("lazy.core.util").walkmods(plugin_dir, function(modname)
-									package.loaded[modname] = nil
-									package.preload[modname] = nil
-								end)
-							end
+						if plugin then
+							require("lazy.core.util").walkmods(plugin.dir .. "/lua", function(modname)
+								package.loaded[modname] = nil
+								package.preload[modname] = nil
+							end)
 						end
 
-						-- Load and apply the colorscheme
-						require("lazy.core.loader").colorscheme(colorscheme)
+						-- If the plugin is already loaded -- which happens whenever two
+						-- themes share one plugin, e.g. every theme that falls back to
+						-- aether -- lazy will not re-run setup() on a spec reload and
+						-- keeps the previous theme's resolved opts cached. Force a full
+						-- reload so setup() reapplies with the new opts.
+						if plugin and plugin._ and plugin._.loaded then
+							require("lazy.core.loader").reload(plugin)
+						else
+							require("lazy.core.loader").colorscheme(colorscheme)
+						end
 
 						vim.defer_fn(function()
 							pcall(vim.cmd.colorscheme, colorscheme)

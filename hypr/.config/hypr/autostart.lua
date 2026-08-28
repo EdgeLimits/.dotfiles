@@ -1,0 +1,9 @@
+-- Startup applications.
+--
+-- Nothing here. The pre-Quattro autostart ran `edge-hypridle-supervise` to
+-- keep hypridle alive; hypridle and hyprlock are gone in Omarchy 4 and idle
+-- and locking now live in ~/.config/omarchy/shell.json (idle.screensaver and
+-- idle.lock, in seconds since idle began).
+--
+-- Add startup apps with:
+-- o.launch_on_start("some-app")

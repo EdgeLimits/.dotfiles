@@ -1,0 +1,4 @@
+# Terminal emulator preference order for xdg-terminal-exec.
+# Omarchy 4's upgrade deleted this file, which silently made SUPER+RETURN open
+# foot instead of ghostty. Tracked here so it survives the next one.
+com.mitchellh.ghostty.desktop
