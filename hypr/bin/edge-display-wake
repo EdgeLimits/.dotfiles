@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# Bring displays back and restore the keyboard backlight.
+#
+# Safe to run at any time, including when nothing is blanked -- it is wired to
+# every hypridle on-resume and to a panic keybind (SUPER SHIFT U).
+
+hyprctl dispatch dpms on >/dev/null 2>&1
+omarchy-brightness-keyboard restore >/dev/null 2>&1
+
+# Recovery for the catastrophic case: no enabled output at all, which happens
+# when an external output was torn down while blanked and did not come back.
+# Re-applying the config re-picks up any connector that reappeared.
+enabled=$(hyprctl monitors -j | jq 'length' 2>/dev/null)
+if [[ ${enabled:-0} -eq 0 ]]; then
+  hyprctl reload >/dev/null 2>&1
+fi
