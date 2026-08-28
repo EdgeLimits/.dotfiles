@@ -40,7 +40,7 @@ local hosts = {
 		profiles = {
 			office = {
 				monitors = {
-					{ output = "eDP-1", mode = "2880x1800@120", position = "0x0", scale = 1.5 }, -- TUXEDO panel
+					{ output = "eDP-1", mode = "2880x1800@120", position = "0x0", scale = 1.6 }, -- TUXEDO panel
 					{ output = "HDMI-A-1", mode = "1920x1080@60", position = "1920x-1080", scale = 1 }, -- HDMI behind TUXEDO
 					{ output = "DP-1", mode = "2560x1440@60", position = "auto", scale = 1 }, -- USB-C behind TUXEDO
 					{ output = "DP-3", mode = "1920x1080@60", position = "auto", scale = 1 }, -- HDMI behind TUXEDO
@@ -64,8 +64,8 @@ local hosts = {
 			-- re-checked against this dock's `hyprctl monitors all`.
 			home = {
 				monitors = {
-					{ output = "DP-3", mode = "3840x2160@120", position = "0x0", scale = 1.5 }, -- Samsung LS28AG700N
-					{ output = "HDMI-A-1", mode = "2560x1440@60", position = "2560x-800", scale = 1, transform = 1 }, -- ASUS XG27ACS, portrait
+					{ output = "DP-3", mode = "3840x2160@120", position = "0x0", scale = 1.6 }, -- Samsung LS28AG700N
+					{ output = "HDMI-A-1", mode = "2560x1440@60", position = "2400x-600", scale = 1, transform = 1 }, -- ASUS XG27ACS, portrait
 				},
 
 				workspaces = {
