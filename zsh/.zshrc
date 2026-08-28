@@ -3,16 +3,6 @@ export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 eval "$(starship init zsh)"
 
-# # Activate syntax highlighting
-# source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-#
-# (( ${+ZSH_HIGHLIGHT_STYLES} )) || typeset -A ZSH_HIGHLIGHT_STYLES
-# ZSH_HIGHLIGHT_STYLES[path]=none
-# ZSH_HIGHLIGHT_STYLES[path_prefix]=none
-#
-# # Activate autosuggestions
-# source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-
 export NVM_DIR="$HOME/.nvm"
 
 
@@ -24,7 +14,6 @@ ssh-init(){
 
 
 env-pyenv(){
-  # make sure pyenv is installed (brew install pyenv)
   export PATH="$HOME/.pyenv/bin:$PATH"
   eval "$(pyenv init --path)"
   eval "$(pyenv init -)"
@@ -32,10 +21,8 @@ env-pyenv(){
 }
 
 env-nvm(){
-  # make sure nvm is installed (brew install nvm)
   export NVM_DIR="$HOME/.nvm"
-  [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
-  [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 }
 
 src(){
@@ -49,4 +36,4 @@ src(){
 
 export PATH="$HOME/.local/bin:$PATH"
 
-. "$HOME/.local/share/../bin/env"
+[ -f "$HOME/.local/bin/env" ] && . "$HOME/.local/bin/env"
