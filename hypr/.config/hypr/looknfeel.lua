@@ -2,22 +2,19 @@
 -- Ported from hyprland/hyprland-overrides.conf during the Omarchy 4 migration.
 
 hl.config({
-  general = {
-    gaps_in = 2,
-    gaps_out = 18,
-    border_size = 0,
-  },
+	general = {
+		gaps_in = 4,
+		gaps_out = 16,
+		border_size = 0,
+	},
 
-  decoration = {
-    rounding = 8,
-
-    -- The pre-Quattro config had active_opacity = 2.0, which is out of
-    -- Hyprland's 0.0-1.0 range; 1.0 is the intent (fully opaque).
-    active_opacity = 1.0,
-    inactive_opacity = 0.7,
-    dim_inactive = true,
-    dim_strength = 0.1,
-  },
+	decoration = {
+		rounding = 8,
+		active_opacity = 2.0,
+		inactive_opacity = 0.9,
+		dim_inactive = true,
+		dim_strength = 0.1,
+	},
 })
 
 -- Xwayland has one global scale for all monitors, so it cannot natively match
