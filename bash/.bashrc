@@ -67,7 +67,7 @@ alias brave-healper='brave --profile-directory=Healper'
 
 obs() { xdg-open "obsidian://open?path=$(realpath "$1")"; }
 
-alias = valheim="ssh -i ~/.ssh/valheim-rsa.pem ubuntu@valheim.edgelimits.com"
+alias valheim="ssh -i ~/.ssh/valheim-rsa.pem ubuntu@valheim.edgelimits.com"
 
 
 # AsyncAPI CLI Autocomplete
