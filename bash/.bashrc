@@ -19,6 +19,8 @@ healper() {
     docker) cd ~/Development/healper/healper-docker ;;
     agent)  cd ~/Development/healper/healper_agent ;;
     ai)     cd ~/Development/healper/healper-ai-support ;;
+    api)    cd ~/Development/healper/healper-api ;;
+    app)    cd ~/Development/healper/healper-app ;;
     *)      cd ~/Development/healper ;;
   esac
 }
